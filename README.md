@@ -1,4 +1,4 @@
-# LHL_Final_Project
+# LHL_Final_Project -- Sign Language Interpreter
 
 ## Dependencies
 
