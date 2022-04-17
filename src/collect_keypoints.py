@@ -11,7 +11,7 @@ from modules.keypoints import extract_keypoints # self-defined module to extract
 
 
 # Base path to store keypoints coordinates/frame images
-base_path = os.path.join('Data') 
+base_path = os.path.join('Data', 'keypoints') 
        
 # signs to detect
 signs = np.array(['Take care', 'Thank you']) # change, decrease/increase as needed
