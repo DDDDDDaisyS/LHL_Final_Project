@@ -11,7 +11,7 @@ from modules.keypoints import holistic_keypoints # self-defined module to extrac
 
 
 # Base path to store keypoints coordinates/frame images
-base_path = os.path.join('Data', 'keypoints') 
+base_path = os.path.join('Data', 'keypoints', 'holistic') 
        
 # signs to detect
 signs = np.array(['Take care', 'Thank you']) # change, decrease/increase as needed
@@ -26,7 +26,7 @@ for sign in signs:
             os.makedirs(os.path.join(base_path, sign, str(video_i)))
         except:
             pass
-demovideo_path = (os.path.join(base_path, 'cat', 'demovideo'))
+demovideo_path = os.path.join(base_path, 'cat', 'demovideo')
 
 # make an empty folder to store frames of 'Hello' video 1 only for project presentation visualization purpose
 try:
