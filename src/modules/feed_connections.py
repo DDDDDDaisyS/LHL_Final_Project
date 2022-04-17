@@ -11,10 +11,10 @@ def detect_video(image, model):
     return image, results
 
 
-mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
 
-def draw_landmarks(image, results):
+# draw landmarks for holistic model
+def draw_landmarks_holistic(image, results):
     # Draw face connections
     mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION, 
                              mp_drawing.DrawingSpec(color=(229,225,98), thickness=1, circle_radius=1), 
@@ -35,3 +35,20 @@ def draw_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(204,153,153), thickness=4, circle_radius=4), 
                              mp_drawing.DrawingSpec(color=(255,255,255), thickness=3, circle_radius=6)
                              ) 
+
+
+# draw landmarks for pose and hands model
+def draw_landmarks(image, res_pose, res_hands):
+    mp_drawing.draw_landmarks(image,
+                              res_pose.pose_landmarks,
+                              mp_pose.POSE_CONNECTIONS,
+                              landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())   
+
+    # Draw the hand annotations on the image.
+    if res_hands.multi_hand_landmarks:
+        for hand_landmarks in res_hands.multi_hand_landmarks:
+            mp_drawing.draw_landmarks(image, 
+                                      hand_landmarks,
+                                      mp_hands.HAND_CONNECTIONS,
+                                      mp_drawing_styles.get_default_hand_landmarks_style(),
+                                      mp_drawing_styles.get_default_hand_connections_style())

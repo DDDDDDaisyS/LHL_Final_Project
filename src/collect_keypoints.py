@@ -6,8 +6,8 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import os
-from modules.feed_connections import detect_video, draw_landmarks
-from modules.keypoints import extract_keypoints # self-defined module to extract keypoints coordinates
+from modules.feed_connections import detect_video, draw_landmarks_holistic
+from modules.keypoints import holistic_keypoints # self-defined module to extract keypoints coordinates
 
 
 # Base path to store keypoints coordinates/frame images
@@ -56,8 +56,8 @@ with mp_holistic.Holistic(min_detection_confidence=0.7, min_tracking_confidence=
                 # detect video feed
                 image, results = detect_video(frame, holistic)
 
-                # Draw connection landmarks
-                draw_landmarks(image, results)
+                # Draw keypoints and connection landmarks
+                draw_landmarks_holistic(image, results)
                 
                 # add break in between recordings
                 if frame_i == 0: # beginning of each video
@@ -78,7 +78,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.7, min_tracking_confidence=
                     cv2.imwrite(demovideo_path, image)
                 
                 # export keypoints
-                keypoints = extract_keypoints(results)
+                keypoints = holistic_keypoints(results)
                 keypoints_path = os.path.join(base_path, sign, str(video_i), str(frame_i))
                 np.save(keypoints_path, keypoints)
                 
