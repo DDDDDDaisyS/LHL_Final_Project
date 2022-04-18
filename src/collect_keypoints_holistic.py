@@ -72,16 +72,15 @@ with mp_holistic.Holistic(min_detection_confidence=0.7, min_tracking_confidence=
                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                     # Show to screen
                     cv2.imshow('OpenCV Feed', image)
-                
+                    # export keypoints
+                    keypoints = holistic_keypoints(results)
+                    keypoints_path = os.path.join(base_path, sign, str(video_i), str(frame_i))
+                    np.save(keypoints_path, keypoints)                
+                    
                 # export frames (for project presentation visualization purpose, not necessary if just for exercise)
                 if (sign == 'hello') and (video_i == 0):
                     cv2.imwrite(demovideo_path, image)
-                
-                # export keypoints
-                keypoints = holistic_keypoints(results)
-                keypoints_path = os.path.join(base_path, sign, str(video_i), str(frame_i))
-                np.save(keypoints_path, keypoints)
-                
+                    
                     
                 # Break out live video with key 'q'
                 if cv2.waitKey(1) & 0xFF == ord('q'):

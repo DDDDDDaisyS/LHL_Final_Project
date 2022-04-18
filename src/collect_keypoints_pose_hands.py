@@ -11,19 +11,21 @@ from modules.keypoints import pose_hand_keypoints # self-defined module to extra
 
 
 # Base path to store keypoints coordinates/frame images
-base_path = os.path.join('Data', 'keypoints', 'pose_hands') 
+base_path = os.path.join('data', 'keypoints', 'pose_hands') 
        
 # signs to detect
-signs = np.array(['love', 'cat']) # change, decrease/increase as needed
+signs = np.array(['A', 'cat', 'D', 'excited', 'Hello', 'How', 'I', 'I_me', 'love', 'my', 'name', 'S', 'Thank you', 'Y', 'you']) # change as needed
 
 # number of videos for one sign, number of frames in one video
 n_videos, n_frames = 50, 40
 
+start_video = 50 # for adding more videos on top of existing videos
+                 # change the value as needed
 # make empty folders to store data
 for sign in signs: 
     for video_i in range(n_videos):
         try: 
-            os.makedirs(os.path.join(base_path, sign, str(video_i)))
+            os.makedirs(os.path.join(base_path, sign, str(start_video + video_i)))
         except:
             pass
 demovideo_path = os.path.join(base_path, 'demovideo')
@@ -51,7 +53,7 @@ for sign in signs:
     # Loop through videos in each sign
     for video_i in range(n_videos):
         # Loop through video frames in each video
-        for frame_i in range(n_frames):
+        for frame_i in range(n_frames+1):
 
             # Read feed
             ret, frame = cap.read() # ret is a boolean variable that returns true if the frame is available.
@@ -77,16 +79,15 @@ for sign in signs:
                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                 # Show to screen
                 cv2.imshow('OpenCV Feed', image)
+                
+                # export keypoints
+                keypoints = pose_hand_keypoints(res_pose, res_hands)
+                keypoints_path = os.path.join(base_path, sign, str(start_video + video_i), str(frame_i))
+                np.save(keypoints_path, keypoints)
 
             # export frames (for project presentation visualization purpose, not necessary if just for exercise)
-            if (sign == 'hello') and (video_i == 0):
-                cv2.imwrite(demovideo_path, image)
-
-            # export keypoints
-            keypoints = pose_hand_keypoints(res_pose, res_hands)
-            keypoints_path = os.path.join(base_path, sign, str(video_i), str(frame_i))
-            np.save(keypoints_path, keypoints)
-
+            # if (sign == 'Hello') and (video_i == 0):
+            #     cv2.imwrite(demovideo_path, image)
 
             # Break out live video with key 'q'
             if cv2.waitKey(1) & 0xFF == ord('q'):

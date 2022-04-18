@@ -18,9 +18,9 @@ def holistic_keypoints(results):
 # extract hands keypoints coordinates only from image using hand model
 def pose_hand_keypoints(res_pose, res_hands):
     # select keypoints 11-23 (shoulders and arms) in pose
-    pose = np.array([[res.x, res.y, res.z, res.visibility] for res in res_pose.pose_world_landmarks.landmark[11:23]]).flatten() if res_pose.pose_world_landmarks else np.zeros(12*4)
+    pose = np.array([[res.x, res.y, res.z] for res in res_pose.pose_world_landmarks.landmark[11:23]]).flatten() if res_pose.pose_world_landmarks else np.zeros(12*3)
     
-    # 21 keypoints in left and right hands each
+    # 42 keypoints in two hands
     if res_hands.multi_hand_world_landmarks:
         h1 = np.array([[res.x, res.y, res.z] for res in res_hands.multi_hand_world_landmarks[0].landmark]).flatten() if len(res_hands.multi_hand_world_landmarks)==1 else np.zeros(21*3)
         h2 = np.array([[res.x, res.y, res.z] for res in res_hands.multi_hand_world_landmarks[1].landmark]).flatten() if len(res_hands.multi_hand_world_landmarks)==2 else np.zeros(21*3)
