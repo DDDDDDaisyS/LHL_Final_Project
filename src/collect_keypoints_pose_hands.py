@@ -14,10 +14,10 @@ from modules.keypoints import pose_hand_keypoints # self-defined module to extra
 base_path = os.path.join('Data', 'keypoints', 'pose_hands') 
        
 # signs to detect
-signs = np.array(['Take care', 'Thank you']) # change, decrease/increase as needed
+signs = np.array(['love', 'cat']) # change, decrease/increase as needed
 
 # number of videos for one sign, number of frames in one video
-n_videos, n_frames = 50, 30
+n_videos, n_frames = 50, 40
 
 # make empty folders to store data
 for sign in signs: 
@@ -58,7 +58,7 @@ for sign in signs:
                                     # frame is an image array vector captured
 
             # detect video feed
-            image, res_pose = detect_video(image, pose)
+            image, res_pose = detect_video(frame, pose)
             image, res_hands = detect_video(image, hands)
 
             # Draw keypoints and connection landmarks

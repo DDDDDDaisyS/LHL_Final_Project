@@ -12,6 +12,11 @@ def detect_video(image, model):
 
 
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
+mp_drawing_styles = mp.solutions.drawing_styles
+
+mp_holistic = mp.solutions.holistic # Holistic model
+mp_hands = mp.solutions.hands # Hand model
+mp_pose = mp.solutions.pose
 
 # draw landmarks for holistic model
 def draw_landmarks_holistic(image, results):
