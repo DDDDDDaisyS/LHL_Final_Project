@@ -1,6 +1,6 @@
 """
 record 50 mini videos for each sign
-extract keypoints coordinates (normalized in [0,1]) to store as .npy files
+extract keypoints coordinates in real-world meters and store as .npy files
 """
 import cv2
 import mediapipe as mp
@@ -11,36 +11,39 @@ from modules.keypoints import pose_hand_keypoints # self-defined module to extra
 
 
 # Base path to store keypoints coordinates/frame images
-base_path = os.path.join('data', 'keypoints', 'pose_hands') 
+base_path_keypoints = os.path.join('data', 'keypoints', 'pose_hands') 
+base_path_frames = os.path.join('data', 'frames') 
        
 # signs to detect
-signs = np.array(['A', 'cat', 'D', 'excited', 'Hello', 'How', 'I', 'I_me', 'love', 'my', 'name', 'S', 'Thank you', 'Y', 'you']) # change as needed
+signs = np.array(['Thank you', 'what', 'Y', 'you', 'your']) # change as needed 'A', 'busy', 'cat', 'D', 'excited', 'finish', 'Hello', 'How', 'I', 'I_me', 'love', 'my', 'name', 'nothing', 'S', 'sign'
 
 # number of videos for one sign, number of frames in one video
-n_videos, n_frames = 50, 40
+n_videos, n_frames = 50, 30
 
-start_video = 50 # for adding more videos on top of existing videos
+start_video = 0 # for adding more videos on top of existing videos
                  # change the value as needed
 # make empty folders to store data
 for sign in signs: 
     for video_i in range(n_videos):
         try: 
-            os.makedirs(os.path.join(base_path, sign, str(start_video + video_i)))
+            os.makedirs(os.path.join(base_path_keypoints, sign, str(start_video + video_i)))
+            os.makedirs(os.path.join(base_path_frames, sign, str(start_video + video_i)))
         except:
             pass
-demovideo_path = os.path.join(base_path, 'demovideo')
+        
+# demovideo_path = os.path.join(base_path, 'demovideo')
 
 # make an empty folder to store frames of 'Hello' video 1 only for project presentation visualization purpose
-try:
-    os.makedirs(demovideo_path) 
-except:
-    pass
+# try:
+#     os.makedirs(demovideo_path) 
+# except:
+#     pass
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # capture video feed from camera '0', webcam on my machine
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)    # set up resolution
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)   # set up resolution
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 768)
 
-mp_pose = mp.solutions.pose
+mp_pose = mp.solutions.pose # pose model
 mp_hands = mp.solutions.hands # Hand model
 # Set mediapipe model 
 hands = mp_hands.Hands(model_complexity=0,
@@ -53,7 +56,7 @@ for sign in signs:
     # Loop through videos in each sign
     for video_i in range(n_videos):
         # Loop through video frames in each video
-        for frame_i in range(n_frames+1):
+        for frame_i in range(n_frames+1): # plus 1 to make the first frame as recording preperation
 
             # Read feed
             ret, frame = cap.read() # ret is a boolean variable that returns true if the frame is available.
@@ -82,14 +85,17 @@ for sign in signs:
                 
                 # export keypoints
                 keypoints = pose_hand_keypoints(res_pose, res_hands)
-                keypoints_path = os.path.join(base_path, sign, str(start_video + video_i), str(frame_i))
+                keypoints_path = os.path.join(base_path_keypoints, sign, str(start_video + video_i), str(frame_i))
+                frames_path = os.path.join(base_path_frames, sign, str(start_video + video_i), f'{frame_i}.jpg')
+                
                 np.save(keypoints_path, keypoints)
+                cv2.imwrite(frames_path, frame)
 
             # export frames (for project presentation visualization purpose, not necessary if just for exercise)
             # if (sign == 'Hello') and (video_i == 0):
             #     cv2.imwrite(demovideo_path, image)
 
-            # Break out live video with key 'q'
+            # Break out live video with key 'q' 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
