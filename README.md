@@ -23,7 +23,7 @@ Bidirectional LSTM was the core for building this model. The categorical accurac
 - [The jupyter notebook](src/train_model.ipynb)
 - [The trained model](src/trained_model)
 
-## Live Capture and ASL Recogonization
+## Live Capture and ASL Recognization
 ### Python file
 Real-time interpreting can be realized by running [this code](interpreter.py).
 
