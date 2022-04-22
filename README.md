@@ -25,7 +25,7 @@ Bidirectional LSTM was the core for building this model. The categorical accurac
 
 ## Live Capture and ASL Recogonization
 ### Python file
-Real-time interpreting can be realized through running [this code](interpreter.py).
+Real-time interpreting can be realized by running [this code](interpreter.py).
 
 ### Flask App Deploy
 A flask app was also created. Run [this code](flask_app.py), copy and paste the address to the browser to realze real-time recognition. 
