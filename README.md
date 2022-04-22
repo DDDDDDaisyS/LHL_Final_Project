@@ -8,9 +8,9 @@ Tensorflow, Keras, OpenCV, Mediapipe
 ## Data Resourse
 - **Chosen signs**: 'busy', 'cat', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Thank you', 'you'. Nothing refers to 'no movements'.
 - Videos were self-recorded, including 50 mini-videos with 30 frames for each sign at different angles and distance. 
-      - While recording frames, pose and hand keypoints were also extracted by using [Google Mediapipe Hands and Pose models](https://google.github.io/mediapipe/solutions/hands.html).
-      - Keypoints are composed of x, y and z, x and y are normalized to [0.0, 1.0] by the image width and height respectively. z represents the landmark depth, and the smaller the value the closer the landmark is to the camera. The magnitude of z uses roughly the same scale as x. The stored keypoints data is [here](data/keypoints), and the collecting code is [here](src/collect_keypoints_frames.py). 
-      - There are some other options, such as to collect frame images only (code is [here](collect_frames.py)) and then load images to extract keypoints; or collecting keypoints with another model, Google Mediapipe Holistic, which is capable of extracting keypoints of face, pose and hands (code is [here](collect_keypoints_holistic.py)). However, the z value in holistic hands module has not been well-trained yet according to their page.
+   - While recording frames, pose and hand keypoints were also extracted by using [Google Mediapipe Hands and Pose models](https://google.github.io/mediapipe/solutions/hands.html).
+   - Keypoints are composed of x, y and z, x and y are normalized to [0.0, 1.0] by the image width and height respectively. z represents the landmark depth, and the smaller the value the closer the landmark is to the camera. The magnitude of z uses roughly the same scale as x. The stored keypoints data is [here](data/keypoints), and the collecting code is [here](src/collect_keypoints_frames.py). 
+   - There are some other options, such as to collect frame images only (code is [here](collect_frames.py)) and then load images to extract keypoints; or collecting keypoints with another model, Google Mediapipe Holistic, which is capable of extracting keypoints of face, pose and hands (code is [here](collect_keypoints_holistic.py)). However, the z value in holistic hands module has not been well-trained yet according to their page.
 
 ## Data Augmentation
 - Dataset size was boosted by adding mirror flipped, translated and scaled data. 
