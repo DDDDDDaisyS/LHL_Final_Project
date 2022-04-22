@@ -1,5 +1,5 @@
 # LHL_Final_Project - Sign Language Interpreter
-This repo contains data and codes of my capstone project at [Lighthousr Labs data science bootcamp](https://www.lighthouselabs.ca/).
+This repo contains data and codes of my capstone project at [Lighthousr Labs](https://www.lighthouselabs.ca/) data science bootcamp. <br>
 Some ideas were inspired by [Nicholas Renotte](https://github.com/nicknochnack/ActionDetectionforSignLanguage).
 
 ## Dependencies
