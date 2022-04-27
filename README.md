@@ -2,6 +2,11 @@
 This repo contains data and codes of my capstone project at [Lighthousr Labs](https://www.lighthouselabs.ca/) data science bootcamp. <br>
 Real-time American Sign Language (ASL) recognition using live video feed from webcam. Some ideas were inspired by [Nicholas Renotte](https://github.com/nicknochnack/ActionDetectionforSignLanguage).
 
+## Demo
+![alt text][logo]
+
+[logo]: https://github.com/DDDDDDaisyS/LHL_Final_Project/blob/main/demo.gif "Logo Title Text 2"
+
 ## Dependencies
 Tensorflow, Keras, OpenCV, Mediapipe
 
