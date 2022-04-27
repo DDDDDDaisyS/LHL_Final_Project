@@ -11,7 +11,7 @@ Real-time American Sign Language (ASL) recognition using live video feed from we
 Tensorflow, Keras, OpenCV, Mediapipe
 
 ## Data Resourse
-- **Chosen signs (10 classes)**: 'busy', 'cat', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Thank you', 'you'. 'Nothing' is not an actual sign, just refers to 'no movements'.
+- **Chosen signs (10 classes)**: 'busy', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Take Care', 'Thank you', 'you'. 'Nothing' is not an actual sign, just refers to 'no movements'.
 - Videos were self-recorded, including 50 mini-videos with 30 frames for each sign at different angles and distance. 
    - While recording frames, pose and hand keypoints were also extracted by using [Google Mediapipe Hands and Pose models](https://google.github.io/mediapipe/solutions/hands.html).
    - Keypoints are composed of x, y and z, x and y are normalized to [0.0, 1.0] by the image width and height respectively. z represents the landmark depth, and the smaller the value the closer the landmark is to the camera. The magnitude of z uses roughly the same scale as x. 
