@@ -29,8 +29,8 @@ Bidirectional LSTM was the core for building this model. The categorical accurac
 - [The trained model](src/trained_model)
 
 ## Live Capture and ASL Recognization
-### Python file
+#### Python File
 Real-time interpreting can be realized by running [this code](interpreter.py).
 
-### Flask App Deploy
+#### Flask App Deployment
 A flask app was also created. Run [this code](flask_app.py), copy and paste the address to the browser to realize real-time sign language recognition. 
