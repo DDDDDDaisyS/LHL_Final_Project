@@ -8,7 +8,7 @@ Real-time American Sign Language (ASL) recognition using live video feed from we
 [logo]: https://github.com/DDDDDDaisyS/LHL_Final_Project/blob/main/demo.gif "Logo Title Text 2"
 
 ## Dependencies
-Tensorflow, Keras, OpenCV, Mediapipe
+Tensorflow, Keras, OpenCV, Mediapipe, Numpy
 
 ## Data Resourse
 - **Chosen signs (10 classes)**: 'busy', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Take Care', 'Thank you', 'you'. 'Nothing' is not an actual sign, just refers to 'no movements'.
@@ -26,7 +26,7 @@ Tensorflow, Keras, OpenCV, Mediapipe
 ## Model
 Bidirectional LSTM was the core for building this model. The categorical accuracy of validation set achieved 100%.
 - [The jupyter notebook](src/train_model.ipynb)
-- [The trained model](src/trained_model)
+- [The trained model](src/trained_model_10)
 
 ## Live Capture and ASL Recognization
 #### Python File
