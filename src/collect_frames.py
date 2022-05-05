@@ -40,20 +40,18 @@ for sign in signs:
 
             # add break in between recordings
             if frame_i == 0: # beginning of each video
-                cv2.putText(frame, 'START COLLECTING', (120,200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255, 0), 4, cv2.LINE_AA)
-                cv2.putText(frame, 'Collecting frames for {}, Video Number {}'.format(sign, video_i), (15,12), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
-                # Show to screen
-                cv2.imshow('OpenCV Feed', frame)
-                cv2.waitKey(2000)
-            else: 
-                cv2.putText(frame, 'Collecting frames for {} Video Number {}'.format(sign, video_i), (15,12), 
+                cv2.putText(image, 'Collecting frames for {} Video Number {}'.format(sign, video_i), (15,12), 
                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                 # Show to screen
-                cv2.imshow('OpenCV Feed', frame)
+                cv2.imshow('OpenCV Feed', image)
                 
-            # export frames
-            cv2.imwrite(f'data/frames/{sign}/{video_i}/{frame_i}.jpg', frame)
+                # export keypoints
+                keypoints = pose_hand_keypoints(res_pose, res_hands)
+                keypoints_path = os.path.join(base_path_keypoints, sign, str(start_video + video_i), str(frame_i))
+                frames_path = os.path.join(base_path_frames, sign, str(start_video + video_i), f'{frame_i}.jpg')
+                
+                np.save(keypoints_path, keypoints)
+                cv2.imwrite(frames_path, frame)
 
             # Break out live video with key 'q'
             if cv2.waitKey(1) & 0xFF == ord('q'):

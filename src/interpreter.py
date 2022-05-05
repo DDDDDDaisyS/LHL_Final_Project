@@ -7,14 +7,14 @@ from modules.keypoints import pose_hand_keypoints
 from pickle import load
 
 # load model
-model = load_model('trained_model')
+model = load_model('trained_model_10')
 # remain same order as in augmentation code
-signs = np.array(['busy', 'cat', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Thank you', 'you'])
+signs = np.array(['busy', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Take care', 'Thank you', 'you'])
 
 # for write in new detection variables
 frames = [] # keypoints in each frame
 sentence = [] # predited signs
-threshold = 0.99999 # predicted probability threshold
+threshold = 0.99 # predicted probability threshold
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)

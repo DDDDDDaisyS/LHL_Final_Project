@@ -1,10 +1,9 @@
 """
-Original dataset size: (1050, 30, 144)
-Augmented dataset size: (33600, 30, 144)
+Original dataset size: (500, 30, 144)
+Augmented dataset size: (16000, 30, 144)
     flipped keypoints (mirror x, represent people who have different dominant hands)
     scale (represent people who are taller or shorter)
     translation
-    rotatation
 
     21 signs with 50 mini-videos for each sign (20 signs + 1 nothing(no movement))
     30 frames for each video
@@ -38,7 +37,7 @@ def keypoints_rotate(x, y, angle):
     y = coordinates[:,1]
     return x, y 
 
-signs = np.array(['busy', 'cat', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Thank you', 'you'])
+signs = np.array(['busy', 'finish', 'Hello', 'How', 'love', 'nothing', 'sign', 'Take care', 'Thank you', 'you'])
 labels_num = {label:num for num, label in enumerate(signs)}
 
 data = [] # X

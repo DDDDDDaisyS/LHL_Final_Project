@@ -15,7 +15,7 @@ base_path_keypoints = os.path.join('data', 'keypoints', 'pose_hands')
 base_path_frames = os.path.join('data', 'frames') 
        
 # signs to detect
-signs = np.array(['Thank you', 'what', 'Y', 'you', 'your']) # change as needed 'A', 'busy', 'cat', 'D', 'excited', 'finish', 'Hello', 'How', 'I', 'I_me', 'love', 'my', 'name', 'nothing', 'S', 'sign'
+signs = np.array(['Take care']) # change as needed 'A', 'busy', 'cat', 'D', 'excited', 'finish', 'Hello', 'How', 'I', 'I_me', 'love', 'my', 'name', 'nothing', 'S', 'sign'
 
 # number of videos for one sign, number of frames in one video
 n_videos, n_frames = 50, 30
