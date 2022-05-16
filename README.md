@@ -34,3 +34,9 @@ Real-time interpreting can be realized by running [this code](interpreter.py).
 
 #### Flask App Deployment
 A flask app was also created. Run [this code](flask_app.py), copy and paste the address to the browser to realize real-time sign language recognition. 
+
+## Future Potential Improvements and Possible Approach
+- Add facial expression features due to their importance in sign languages: MediaPipe face mesh / Holistic solutions
+- Reconstruct sentence order to English form since Sign Languges have different grammar rules: NLP
+- Recognize movements regardless of speed: Dynamic Time Warping
+- Add 'text to speech' feature: there are some mature modules ready to use such as pyttsx3.
